@@ -15,32 +15,19 @@
     </properties>
 
     <dependencies>
-        <!-- JavaFX Controls (Đã nâng cấp lên version 21 và bỏ classifier) -->
+
+        <!-- JavaFX 17 Windows -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>21</version>
+            <version>17</version>
+            <classifier>win</classifier>
         </dependency>
-
-        <!-- JavaFX FXML (Đã nâng cấp lên version 21 và bỏ classifier) -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>21</version>
-        </dependency>
-
-        <!-- JavaFX Graphics (Thêm mới để đảm bảo tương thích nền tảng chéo) -->
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-graphics</artifactId>
-            <version>21</version>
-        </dependency>
-
-        <!-- JavaFX Base (Thêm mới để đảm bảo tương thích nền tảng chéo) -->
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-base</artifactId>
-            <version>21</version>
+            <version>17</version>
+            <classifier>win</classifier>
         </dependency>
 
         <!-- Java Mail -->
@@ -50,7 +37,7 @@
             <version>1.6.2</version>
         </dependency>
 
-        <!-- Apache POI (Cho Excel) -->
+        <!-- Apache POI -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
@@ -71,4 +58,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
