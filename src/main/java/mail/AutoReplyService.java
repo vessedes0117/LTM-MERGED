@@ -114,12 +114,7 @@ public class AutoReplyService {
                         continue;
                     }
 
-                    // ❌ loop
-                    if (subject != null && subject.toLowerCase().startsWith("re:")) {
-                        System.out.println("Skip reply loop");
-                        msg.setFlag(Flags.Flag.SEEN, true);
-                        continue;
-                    }
+
 
                     // ❌ chỉ reply người thật (tuỳ chọn mạnh)
                     if (!fromEmail.endsWith("@gmail.com")) {

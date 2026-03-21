@@ -13,22 +13,34 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <dependencies>
 
-        <!-- JavaFX Controls -->
+    <dependencies>
+        <!-- JavaFX Controls (Đã nâng cấp lên version 21 và bỏ classifier) -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>17</version>
-            <classifier>win</classifier>
+            <version>21</version>
         </dependency>
 
-        <!-- JavaFX FXML -->
+        <!-- JavaFX FXML (Đã nâng cấp lên version 21 và bỏ classifier) -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>17</version>
-            <classifier>win</classifier>
+            <version>21</version>
+        </dependency>
+
+        <!-- JavaFX Graphics (Thêm mới để đảm bảo tương thích nền tảng chéo) -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>21</version>
+        </dependency>
+
+        <!-- JavaFX Base (Thêm mới để đảm bảo tương thích nền tảng chéo) -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>21</version>
         </dependency>
 
         <!-- Java Mail -->
@@ -37,6 +49,8 @@
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
+
+        <!-- Apache POI (Cho Excel) -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
@@ -44,21 +58,17 @@
         </dependency>
 
     </dependencies>
+
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
-
                 <configuration>
                     <mainClass>client.MailClientGUI</mainClass>
                 </configuration>
-
             </plugin>
-
         </plugins>
     </build>
-
 </project>

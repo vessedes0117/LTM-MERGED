@@ -316,13 +316,21 @@ public class MailClientGUI extends Application {
         btnApply.setStyle(primaryBtnStyle());
         btnApply.setMaxWidth(Double.MAX_VALUE);
 
+        // --- ĐÃ SỬA: Nút Apply Auto Reply chờ Response ---
         btnApply.setOnAction(e -> {
             try {
                 Socket socket = new Socket("localhost", 5000);
+
+                ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+                ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+
                 AutoReplyConfig cfg = new AutoReplyConfig(
                         arToggle.isSelected(), txtTemplate.getText()
                 );
-                new ObjectOutputStream(socket.getOutputStream()).writeObject(cfg);
+                out.writeObject(cfg);
+
+                // Đợi response từ Server trước khi đóng
+                String response = (String) in.readObject();
                 socket.close();
 
                 autoReplyActive = arToggle.isSelected();
@@ -330,7 +338,6 @@ public class MailClientGUI extends Application {
 
                 arStatus.setStyle("-fx-font-size:11px; -fx-text-fill:" + SUCCESS + ";");
                 arStatus.setText("✓  Đã lưu cài đặt thành công");
-
                 fade(arStatus);
 
             } catch (Exception ex) {
@@ -341,7 +348,7 @@ public class MailClientGUI extends Application {
 
         arBody.getChildren().addAll(arInfoRow, templateLabel, txtTemplate, btnApply, arStatus);
 
-        // --- ĐÃ CẬP NHẬT Ở ĐÂY: Logic bật/tắt Toggle Button ---
+        // --- ĐÃ SỬA: Nút Toggle TẮT Auto Reply chờ Response ---
         arToggle.setOnAction(e -> {
             boolean on = arToggle.isSelected();
             arToggle.setText(on ? "BẬT" : "TẮT");
@@ -356,8 +363,14 @@ public class MailClientGUI extends Application {
                 new Thread(() -> {
                     try {
                         Socket socket = new Socket("localhost", 5000);
+                        ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+                        ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+
                         AutoReplyConfig cfg = new AutoReplyConfig(false, "");
-                        new ObjectOutputStream(socket.getOutputStream()).writeObject(cfg);
+                        out.writeObject(cfg);
+
+                        // Đợi response
+                        in.readObject();
                         socket.close();
 
                         Platform.runLater(() -> {
